@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   LayoutDashboard, Map, FlaskConical, Trophy, Search, Sparkles,
@@ -18,7 +18,8 @@ const navItems = [
 export function Sidebar({
   open, onClose,
 }: { open: boolean; onClose: () => void }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const location = useLocation();
+  const pathname = location.pathname;
   const [phasesOpen, setPhasesOpen] = useState(true);
 
   return (
@@ -97,8 +98,7 @@ export function Sidebar({
                     return (
                       <Link
                         key={p.id}
-                        to="/phase/$phaseId"
-                        params={{ phaseId: p.id }}
+                        to={`/phase/${p.id}`}
                         onClick={onClose}
                         className={cn(
                           "group flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-all",
@@ -130,8 +130,7 @@ export function Sidebar({
                 Você está a 3 módulos de concluir Fundamentos Linux.
               </p>
               <Link
-                to="/module/$moduleId"
-                params={{ moduleId: "permissions" }}
+                to="/module/permissions"
                 className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline"
               >
                 Retomar →

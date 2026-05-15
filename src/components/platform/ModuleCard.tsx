@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Clock, Lock, CheckCircle2, PlayCircle, ArrowRight } from "lucide-react";
 import type { Module } from "@/data/roadmap";
 import { cn } from "@/lib/utils";
@@ -15,8 +15,7 @@ export function ModuleCard({ module }: { module: Module }) {
   const Icon = s.icon;
   return (
     <Link
-      to="/module/$moduleId"
-      params={{ moduleId: module.id }}
+      to={`/module/${module.id}`}
       className={cn(
         "group relative block rounded-2xl border border-border bg-card p-5",
         "shadow-soft hover:shadow-elevated transition-all duration-300",
